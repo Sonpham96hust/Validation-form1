@@ -57,6 +57,23 @@ html {
     font-size: 1.4rem;
 }
 
+.radio-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+.radio-item{
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    line-height: 1.2rem;
+}
+
+.radio-item-gender{
+    padding-right: 16px;
+}
+
 .form-control {
     height: 40px;
     padding: 8px 12px;

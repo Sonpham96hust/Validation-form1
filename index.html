@@ -40,6 +40,38 @@
       <span class="form-message"></span>
     </div>
 
+    <div class="form-group">
+      <label for="password_confirmation" class="form-label">Giới tính</label>
+      <div class="radio-group">
+        <div class="radio-item">
+          <div class="radio-item-gender">
+              <input name="gender" type="radio" value="male" class="form-control">
+          </div>
+            Nam
+        </div>
+      </div>
+      <div class="radio-group">
+        <div class="radio-item">
+          <div class="radio-item-gender">
+              <input name="gender" type="radio" value="female" class="form-control">
+          </div>
+            
+            Nữ
+        </div>
+      </div>
+      <div class="radio-group">
+        <div class="radio-item">
+          <div class="radio-item-gender">
+              <input name="gender" type="radio" value="other" class="form-control">
+          </div>
+            Khác
+        </div>
+      </div>
+      
+      
+      <span class="form-message"></span>
+    </div>
+
     <button class="form-submit">Đăng ký</button>
   </form>
 
@@ -48,6 +80,7 @@
     <script>
         Validator({
             form: '#form-1',
+            formGroupSelector: '.form-group',
             errorSelector: '.form-message',
             rules:[
                 Validator.isRequired('#fullname', 'Vui lòng nhập tên đầy đủ'),
@@ -55,10 +88,14 @@
                 Validator.isEmail('#email'),
                 Validator.minLength('#password', 6),
                 Validator.isRequired('#password_confirmation'),
+                Validator.isRequired('input[name="gender"]'),
                 Validator.isConfirmed('#password_confirmation', function(){
                   return document.querySelector('#form-1 #password').value
                 }, 'Mật khẩu nhập vào không chính xác')
-            ]
+            ],
+          onSubmit:  function(data){
+            console.log(data)
+          }
         })
     </script>
 </body>
