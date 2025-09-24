@@ -72,8 +72,17 @@ function Validator(options){
                 var formValue = Array.from(enableInputs).reduce(function (result, input){
                     switch(input.type){
                         case 'radio':
-                        case 'checkbox':
                         result[input.name] = formElement.querySelector('input[name="' + input.name + '"]:checked').value;
+                        break;
+                        case 'checkbox':
+                            if(!input.matches(':checked')) {
+                                value[input.name] = '';
+                                return result
+                            }
+                            if(!Array.isArray(result[input.name])){
+                                result[input.name]=[];
+                            }
+                            result[input.name].push(input.value)
                         break;
                         default:
                         result[input.name] = input.value ;
@@ -106,6 +115,10 @@ function Validator(options){
         {
         // Xử lý trường hợp blur khỏi input
             inputElement.onblur = function(){
+                validate(inputElement, rule)
+            }
+
+            inputElement.onchange = function(){
                 validate(inputElement, rule)
             }
         // Xử lý mỗi khi người dùng nhập vào input
